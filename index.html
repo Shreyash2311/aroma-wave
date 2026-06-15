@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aroma Wave by Capital — Cafe in Gandhidham, Gujarat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brown-deep: #1e0f05;
+      --brown-dark: #2c1a0e;
+      --brown-mid: #5c3317;
+      --brown-warm: #8b5a2b;
+      --cream: #f5ede3;
+      --cream-light: #faf5ef;
+      --glass-bg: rgba(255,248,240,0.45);
+      --glass-border: rgba(255,255,255,0.55);
+      --glass-shadow: 0 8px 32px rgba(92,51,23,0.12);
+      --glass-dark: rgba(30,15,5,0.55);
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+      --transition: 220ms ease;
+      --radius: 20px;
+      --radius-lg: 28px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--brown-deep);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+      background: #c9a882;
+    }
+
+    /* ── BOKEH BACKGROUND ── */
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .page-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 45% at 15% 20%, #d4a574 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 85% 15%, #c8956a 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 50% 60%, #b8845a 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 80% 80%, #d4a574 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 10% 80%, #c09060 0%, transparent 55%),
+        radial-gradient(ellipse 70% 30% at 50% 10%, #e8c9a0 0%, transparent 60%),
+        #b87848;
+      filter: blur(40px);
+    }
+    .page-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle 200px at 20% 35%, rgba(255,220,170,0.5) 0%, transparent 70%),
+        radial-gradient(circle 150px at 75% 25%, rgba(200,150,100,0.4) 0%, transparent 70%),
+        radial-gradient(circle 180px at 60% 70%, rgba(160,100,60,0.35) 0%, transparent 70%),
+        radial-gradient(circle 120px at 30% 75%, rgba(220,175,120,0.45) 0%, transparent 70%);
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── UTILITY ── */
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+    }
+
+    .glass-dark {
+      background: var(--glass-dark);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--brown-warm);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--brown-deep);
+      line-height: 1.18;
+    }
+
+    .section-title.light { color: #fff; }
+
+    .section-body {
+      font-size: 15px;
+      color: var(--brown-mid);
+      line-height: 1.7;
+      margin-top: 14px;
+    }
+
+    .section-body.light { color: rgba(255,255,255,0.75); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+      touch-action: manipulation;
+      text-decoration: none;
+    }
+    .btn:focus-visible { outline: 3px solid var(--brown-warm); outline-offset: 3px; }
+
+    .btn-dark {
+      background: var(--brown-dark);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(44,26,14,0.35);
+    }
+    .btn-dark:hover { background: var(--brown-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(44,26,14,0.4); }
+
+    .btn-glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      color: var(--brown-dark);
+    }
+    .btn-glass:hover { background: rgba(255,248,240,0.7); transform: translateY(-2px); }
+
+    .btn-outline-light {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: #fff;
+    }
+    .btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      background: rgba(250,245,239,0.55);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      border-radius: 0 0 20px 20px;
+      padding: 0 36px;
+      box-shadow: 0 4px 24px rgba(92,51,23,0.08);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+    .nav-logo-name {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brown-deep);
+      line-height: 1.1;
+    }
+    .nav-logo-sub {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      color: var(--brown-warm);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--brown-mid);
+      text-decoration: none;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 100%;
+      height: 1.5px;
+      background: var(--brown-dark);
+      transition: right var(--transition);
+    }
+    .nav-links a:hover { color: var(--brown-dark); }
+    .nav-links a:hover::after { right: 0; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--brown-dark); border-radius: 2px; transition: all 300ms ease; }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0; bottom: 0;
+      background: rgba(250,245,239,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 99;
+      padding: 40px 32px;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--brown-deep);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      padding: 100px 0 60px;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brown-mid);
+      margin-bottom: 20px;
+    }
+    .star-gold { color: #d97706; }
+    .hero-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(38px, 5.5vw, 72px);
+      font-weight: 800;
+      color: var(--brown-deep);
+      line-height: 1.06;
+      margin-bottom: 18px;
+    }
+    .hero-heading em {
+      font-style: italic;
+      color: var(--brown-warm);
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--brown-mid);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 32px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 40px; }
+
+    .hero-icons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .hero-icon-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 100px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--brown-dark);
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .hero-cup-wrap {
+      position: relative;
+      width: 380px;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-cup-glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,220,170,0.6) 0%, rgba(200,150,100,0.3) 50%, transparent 75%);
+      filter: blur(20px);
+    }
+    .hero-cup-circle {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,248,240,0.35);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .hero-cup-img {
+      position: relative;
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      overflow: hidden;
+      filter: drop-shadow(0 12px 32px rgba(92,51,23,0.3));
+      border: 3px solid rgba(255,255,255,0.55);
+    }
+    .hero-cup-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-float-badge {
+      position: absolute;
+      background: rgba(255,248,240,0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 16px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 20px rgba(92,51,23,0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-float-1 { bottom: 40px; left: -10px; }
+    .hero-float-2 { top: 40px; right: -10px; }
+    .float-emoji { font-size: 26px; }
+    .float-lbl { font-size: 11px; color: var(--brown-warm); font-weight: 500; }
+    .float-val { font-weight: 700; font-size: 14px; color: var(--brown-deep); }
+
+    .open-dot-wrap {
+      position: absolute;
+      top: 28px; left: 28px;
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 100px;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brown-dark);
+    }
+    .green-dot { width: 7px; height: 7px; background: #16a34a; border-radius: 50%; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+    /* ── SECTION WRAPPER ── */
+    .section { padding: 80px 0; }
+
+    /* ── MENU CARDS ── */
+    .menu-section-head { text-align: center; margin-bottom: 48px; }
+    .menu-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .menu-card {
+      background: rgba(255,248,240,0.48);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 24px rgba(92,51,23,0.1);
+    }
+    .menu-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(92,51,23,0.18); }
+    .menu-card-top {
+      height: 190px;
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-card-top img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 350ms ease;
+    }
+    .menu-card:hover .menu-card-top img { transform: scale(1.06); }
+
+    .pop-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--brown-dark);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .menu-card-body { padding: 18px 20px 20px; }
+    .menu-card-name { font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--brown-deep); margin-bottom: 4px; }
+    .menu-card-desc { font-size: 12.5px; color: var(--brown-warm); line-height: 1.5; margin-bottom: 14px; }
+    .menu-card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .menu-card-actions { display: flex; gap: 10px; }
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all var(--transition);
+    }
+    .icon-btn:hover { background: rgba(255,255,255,0.9); transform: scale(1.05); }
+    .price-pill {
+      background: var(--brown-dark);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 100px;
+    }
+
+    /* ── FEATURE ROW ── */
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: ltr; }
+    .feature-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .feature-circle {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.55);
+      box-shadow: 0 8px 40px rgba(92,51,23,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-circle img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .price-float {
+      position: absolute;
+      bottom: 20px;
+      right: -10px;
+      background: var(--brown-dark);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 100px;
+      box-shadow: 0 4px 20px rgba(44,26,14,0.3);
+    }
+    .beans-scatter {
+      position: absolute;
+      inset: -20px;
+      pointer-events: none;
+    }
+    .bean {
+      position: absolute;
+      font-size: 14px;
+      opacity: 0.6;
+    }
+
+    /* ── OFFERS SECTION ── */
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .offer-card {
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-card-warm {
+      background: rgba(44,26,14,0.72);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .offer-card-cool {
+      background: rgba(255,248,240,0.48);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+    .offer-ring {
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .offer-icon { font-size: 36px; margin-bottom: 14px; }
+    .offer-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .offer-title.light { color: #fff; }
+    .offer-title.dark { color: var(--brown-deep); }
+    .offer-desc { font-size: 13.5px; line-height: 1.6; margin-bottom: 18px; }
+    .offer-desc.light { color: rgba(255,255,255,0.72); }
+    .offer-desc.dark { color: var(--brown-mid); }
+    .offer-tag {
+      display: inline-block;
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .offer-tag-light { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: #fff; }
+    .offer-tag-dark { background: var(--brown-dark); color: #fff; }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .g-item {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: rgba(255,248,240,0.45);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(92,51,23,0.1);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .g-item:hover { transform: scale(1.02); box-shadow: 0 8px 32px rgba(92,51,23,0.2); }
+    .g-item::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 12px; left: 12px;
+      color: rgba(44,26,14,0.75);
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .g-item:hover::after { opacity: 1; }
+    .g-1 { grid-column: span 6; min-height: 300px; }
+    .g-2 { grid-column: span 3; min-height: 140px; }
+    .g-3 { grid-column: span 3; min-height: 140px; }
+    .g-4 { grid-column: span 3; min-height: 140px; }
+    .g-5 { grid-column: span 3; min-height: 140px; }
+    .g-6 { grid-column: span 4; min-height: 180px; }
+    .g-7 { grid-column: span 4; min-height: 180px; }
+    .g-8 { grid-column: span 4; min-height: 180px; }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; transition: transform 350ms ease; }
+    .g-item:hover img { transform: scale(1.06); }
+    .g-item::after { color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.4); z-index: 2; }
+    .g-item::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(30,15,5,0.45) 0%, transparent 50%); z-index: 1; opacity: 0; transition: opacity var(--transition); }
+    .g-item:hover::before { opacity: 1; }
+
+    /* ── REVIEWS ── */
+    .reviews-wrap {
+      background: rgba(30,15,5,0.65);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 32px;
+      padding: 56px;
+    }
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 44px;
+    }
+    .rating-num {
+      font-family: var(--font-heading);
+      font-size: 80px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+    .rating-stars { font-size: 24px; color: #f59e0b; margin-bottom: 4px; }
+    .rating-label { font-size: 16px; font-weight: 600; color: #fff; }
+    .rating-count { font-size: 13px; color: rgba(255,255,255,0.5); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .review-card {
+      background: rgba(255,248,240,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 24px;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .review-card:hover { background: rgba(255,248,240,0.14); transform: translateY(-3px); }
+    .review-stars { font-size: 14px; color: #f59e0b; margin-bottom: 12px; }
+    .review-q { font-size: 34px; line-height: 1; color: var(--brown-warm); font-family: Georgia, serif; margin-bottom: 6px; }
+    .review-text { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.65; font-style: italic; margin-bottom: 18px; }
+    .reviewer { display: flex; gap: 10px; align-items: center; }
+    .rev-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px; color: #fff; flex-shrink: 0;
+    }
+    .av-a { background: var(--brown-warm); }
+    .av-b { background: #2563eb; }
+    .av-c { background: #059669; }
+    .av-d { background: #d97706; }
+    .rev-name { font-weight: 700; font-size: 13px; color: #fff; }
+    .rev-meta { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: rgba(255,248,240,0.48);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 28px;
+      padding: 36px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cta-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--brown-warm); margin-bottom: 6px; }
+    .cta-title {
+      font-family: var(--font-heading);
+      font-size: clamp(22px, 3.5vw, 36px);
+      font-weight: 700;
+      color: var(--brown-deep);
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-card {
+      background: rgba(255,248,240,0.48);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--glass-shadow);
+    }
+    .contact-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 22px; }
+    .c-icon {
+      width: 44px; height: 44px; border-radius: 13px;
+      background: var(--brown-dark); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .c-title { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+    .c-text { font-size: 13.5px; color: var(--brown-mid); line-height: 1.55; }
+    .c-link { color: var(--brown-warm); font-weight: 600; font-size: 14px; text-decoration: none; }
+    .c-link:hover { color: var(--brown-dark); }
+
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table td { padding: 5px 0; font-size: 13px; }
+    .hours-table td:first-child { font-weight: 600; color: var(--brown-deep); }
+    .hours-table td:last-child { text-align: right; color: var(--brown-mid); }
+
+    .service-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .spill {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: 100px;
+      padding: 7px 14px;
+      font-size: 12.5px; font-weight: 600;
+      color: var(--brown-dark);
+    }
+
+    .map-box {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .map-box iframe { width: 100%; height: 420px; border: none; display: block; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: rgba(30,15,5,0.72);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 60px 0 28px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr 1.4fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 24px;
+    }
+    .footer-logo { font-family: var(--font-heading); font-size: 20px; color: #fff; margin-bottom: 12px; }
+    .footer-desc { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 260px; }
+    .footer-h { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
+    .footer-links { display: flex; flex-direction: column; gap: 9px; }
+    .footer-links a { font-size: 13.5px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color var(--transition); }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12.5px; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 10px;
+    }
+    .social-row { display: flex; gap: 10px; margin-top: 18px; }
+    .soc-btn {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; cursor: pointer;
+      transition: background var(--transition);
+    }
+    .soc-btn:hover { background: var(--brown-warm); }
+
+    /* ── INSTAGRAM FEED ── */
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 14px;
+    }
+    .ig-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      background: rgba(255,248,240,0.3);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 4px 20px rgba(92,51,23,0.12);
+      text-decoration: none;
+      display: block;
+    }
+    .ig-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 400ms ease;
+    }
+    .ig-card:hover img { transform: scale(1.08); }
+    .ig-card:focus-visible { outline: 3px solid var(--brown-warm); outline-offset: 3px; }
+
+    /* Grid placement */
+    .ig-large { grid-column: span 2; grid-row: span 2; }
+    .ig-tall  { grid-column: span 1; grid-row: span 2; }
+    .ig-small { grid-column: span 1; grid-row: span 1; }
+
+    /* Overlay */
+    .ig-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,15,5,0.88) 0%, rgba(30,15,5,0.2) 45%, transparent 70%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px;
+      opacity: 0;
+      transition: opacity 300ms ease;
+    }
+    .ig-card:hover .ig-overlay { opacity: 1; }
+    .ig-type-badge {
+      align-self: flex-end;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #fff;
+      flex-shrink: 0;
+    }
+    .ig-meta { margin-top: auto; }
+    .ig-caption {
+      font-size: 13px;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.45;
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .ig-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* Always-visible subtle gradient at bottom */
+    .ig-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(to top, rgba(30,15,5,0.45), transparent);
+      z-index: 1;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+    }
+    .ig-card:hover::before { opacity: 0; }
+    .ig-overlay { z-index: 2; }
+
+    /* Follow strip */
+    .ig-follow-strip {
+      margin-top: 36px;
+      background: rgba(255,248,240,0.45);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 20px;
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .ig-follow-handle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brown-deep);
+    }
+    .ig-follow-sub {
+      font-size: 13px;
+      color: var(--brown-warm);
+      flex: 1;
+      min-width: 160px;
+    }
+
+    /* Responsive Instagram grid */
+    @media (max-width: 900px) {
+      .ig-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+      .ig-large { grid-column: span 2; grid-row: span 1; min-height: 240px; }
+      .ig-tall  { grid-column: span 1; grid-row: span 2; }
+      .ig-small { grid-column: span 1; min-height: 180px; }
+      .ig-card:hover .ig-overlay { opacity: 1; }
+    }
+    @media (max-width: 540px) {
+      .ig-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .ig-large { grid-column: span 2; min-height: 200px; }
+      .ig-tall  { grid-column: span 1; grid-row: span 1; min-height: 180px; }
+      .ig-follow-strip { flex-direction: column; align-items: flex-start; padding: 24px; }
+    }
+
+    /* Touch devices: always show overlay */
+    @media (hover: none) {
+      .ig-overlay { opacity: 1; background: linear-gradient(to top, rgba(30,15,5,0.75) 0%, transparent 55%); }
+      .ig-card::before { display: none; }
+    }
+
+    /* ── SCROLL TOP ── */
+    .scroll-top {
+      position: fixed; bottom: 24px; right: 24px;
+      width: 46px; height: 46px;
+      background: var(--brown-dark);
+      color: #fff; border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(44,26,14,0.35);
+      transition: all var(--transition);
+      opacity: 0; pointer-events: none; z-index: 50;
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { background: var(--brown-deep); transform: translateY(-3px); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+      margin: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta-desk { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub { margin: 0 auto 32px; }
+      .hero-actions { justify-content: center; }
+      .hero-icons { justify-content: center; }
+      .hero-visual { order: -1; }
+      .hero-cup-wrap { width: 280px; height: 280px; }
+      .hero-cup-circle { width: 220px; height: 220px; }
+      .hero-cup-emoji { font-size: 110px; }
+      .hero-float-1, .hero-float-2 { display: none; }
+      .feature-row { grid-template-columns: 1fr; gap: 36px; }
+      .feature-row.reverse { direction: ltr; }
+      .feature-circle { width: 240px; height: 240px; font-size: 90px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .map-box iframe { height: 300px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .reviews-wrap { padding: 36px 24px; }
+      .rating-num { font-size: 56px; }
+      .cta-banner { flex-direction: column; align-items: flex-start; padding: 28px 32px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .g-1 { grid-column: span 2; min-height: 200px; }
+      .g-2, .g-3, .g-4, .g-5, .g-6, .g-7, .g-8 { grid-column: span 1; min-height: 140px; }
+    }
+
+    @media (max-width: 540px) {
+      .menu-card-grid { grid-template-columns: 1fr; }
+      .offers-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .g-1, .g-2, .g-3, .g-4, .g-5, .g-6, .g-7, .g-8 { grid-column: span 1; min-height: 170px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .nav-inner { padding: 0 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BOKEH BG -->
+<div class="page-bg" aria-hidden="true"></div>
+
+<div class="page-wrap">
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" aria-label="Aroma Wave by Capital">
+        <span class="nav-logo-name">Aroma Wave ☕</span>
+        <span class="nav-logo-sub">Wake up to something special.</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Coffee Menu</a></li>
+        <li><a href="#offers">Offers</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ul>
+      <div class="nav-cta-desk">
+        <a href="tel:09998899360" class="btn btn-dark">Visit the Cafe</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile menu">
+  <a href="#about" class="mob-link">About</a>
+  <a href="#menu" class="mob-link">Menu</a>
+  <a href="#offers" class="mob-link">Offers</a>
+  <a href="#gallery" class="mob-link">Gallery</a>
+  <a href="#reviews" class="mob-link">Reviews</a>
+  <a href="#contact" class="mob-link">Contact</a>
+  <a href="tel:09998899360" class="btn btn-dark" style="width:fit-content">Call Now</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home" aria-label="Welcome">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">
+          <span class="star-gold">★</span>
+          4.5 · 101 Reviews on Google
+        </div>
+        <h1 class="hero-heading">
+          Aroma Wave<br>
+          <em>The Best</em><br>
+          For You
+        </h1>
+        <p class="hero-sub">
+          Tasty food, refreshing drinks, and a relaxing vibe — Gandhidham's favourite cafe destination. Open till 1 AM.
+        </p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-dark">View Menu</a>
+          <a href="#contact" class="btn btn-glass">Find Us</a>
+        </div>
+        <div class="hero-icons" aria-label="What we offer">
+          <div class="hero-icon-pill">☕ Coffee</div>
+          <div class="hero-icon-pill">🍕 Pizza</div>
+          <div class="hero-icon-pill">🥤 Mocktails</div>
+          <div class="hero-icon-pill">🍝 Pasta</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-cup-wrap">
+          <div class="hero-cup-glow" aria-hidden="true"></div>
+          <div class="hero-cup-circle" aria-hidden="true"></div>
+          <div class="hero-cup-img">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Latte art coffee from above" loading="eager" />
+          </div>
+          <div class="open-dot-wrap" aria-label="Currently open">
+            <div class="green-dot"></div>
+            Open · Till 1 AM
+          </div>
+        </div>
+        <div class="hero-float-badge hero-float-1" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=80&q=80" alt="" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" />
+          <div>
+            <div class="float-lbl">Most Loved</div>
+            <div class="float-val">Crispy Pizza</div>
+          </div>
+        </div>
+        <div class="hero-float-badge hero-float-2" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=80&q=80" alt="" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" />
+          <div>
+            <div class="float-lbl">Best Seller</div>
+            <div class="float-val">Mocktails</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── MENU ── -->
+<section class="section" id="menu" aria-label="Our Menu">
+  <div class="container">
+    <div class="menu-section-head">
+      <div class="section-label">Our Menu</div>
+      <h2 class="section-title">Crafted to Delight</h2>
+      <p class="section-body" style="max-width:480px; margin:14px auto 0;">From thin-crust pizzas to signature mocktails — every dish is made with passion and fresh ingredients.</p>
+    </div>
+    <div class="menu-card-grid" role="list">
+      <article class="menu-card" role="listitem">
+        <div class="menu-card-top">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=80" alt="Crispy thin crust pizza" loading="lazy" />
+          <span class="pop-badge">Popular</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Crispy Pizza</div>
+          <div class="menu-card-desc">Thin crust loaded with toppings, baked to golden perfection. A crowd favourite.</div>
+          <div class="menu-card-foot">
+            <div class="menu-card-actions">
+              <button class="icon-btn" aria-label="Add to cart">🛒</button>
+              <button class="icon-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+            <span class="price-pill">From ₹199</span>
+          </div>
+        </div>
+      </article>
+      <article class="menu-card" role="listitem">
+        <div class="menu-card-top">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80" alt="Coffee cup with latte art" loading="lazy" />
+          <span class="pop-badge">Loved</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Great Coffee</div>
+          <div class="menu-card-desc">Expertly brewed coffee — Arabica or Robusta, 30 ml espresso. Wake up to something special.</div>
+          <div class="menu-card-foot">
+            <div class="menu-card-actions">
+              <button class="icon-btn" aria-label="Add to cart">🛒</button>
+              <button class="icon-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+            <span class="price-pill">From ₹79</span>
+          </div>
+        </div>
+      </article>
+      <article class="menu-card" role="listitem">
+        <div class="menu-card-top">
+          <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=500&q=80" alt="Creamy white sauce pasta" loading="lazy" />
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">White Sauce Pasta</div>
+          <div class="menu-card-desc">Creamy white sauce pasta made fresh every time. Worth trying 100%!</div>
+          <div class="menu-card-foot">
+            <div class="menu-card-actions">
+              <button class="icon-btn" aria-label="Add to cart">🛒</button>
+              <button class="icon-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+            <span class="price-pill">From ₹149</span>
+          </div>
+        </div>
+      </article>
+      <article class="menu-card" role="listitem">
+        <div class="menu-card-top">
+          <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=500&q=80" alt="Signature mocktail drink" loading="lazy" />
+          <span class="pop-badge">Top Pick</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Signature Mocktails</div>
+          <div class="menu-card-desc">Refreshing mocktails crafted in-house. The perfect cooling companion.</div>
+          <div class="menu-card-foot">
+            <div class="menu-card-actions">
+              <button class="icon-btn" aria-label="Add to cart">🛒</button>
+              <button class="icon-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+            <span class="price-pill">From ₹129</span>
+          </div>
+        </div>
+      </article>
+      <article class="menu-card" role="listitem">
+        <div class="menu-card-top">
+          <img src="https://images.unsplash.com/photo-1619531040576-f9416740661f?w=500&q=80" alt="Golden garlic bread" loading="lazy" />
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Garlic Bread</div>
+          <div class="menu-card-desc">Golden, buttery garlic bread — the perfect starter or side for every meal.</div>
+          <div class="menu-card-foot">
+            <div class="menu-card-actions">
+              <button class="icon-btn" aria-label="Add to cart">🛒</button>
+              <button class="icon-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+            <span class="price-pill">From ₹89</span>
+          </div>
+        </div>
+      </article>
+      <article class="menu-card" role="listitem">
+        <div class="menu-card-top">
+          <img src="https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=500&q=80" alt="Fudgy chocolate brownie" loading="lazy" />
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Fudgy Brownie</div>
+          <div class="menu-card-desc">Rich, dense chocolate brownie — the dessert that keeps everyone coming back.</div>
+          <div class="menu-card-foot">
+            <div class="menu-card-actions">
+              <button class="icon-btn" aria-label="Add to cart">🛒</button>
+              <button class="icon-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+            <span class="price-pill">From ₹99</span>
+          </div>
+        </div>
+      </article>
+      <article class="menu-card" role="listitem">
+        <div class="menu-card-top">
+          <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=500&q=80" alt="Red sauce pasta" loading="lazy" />
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Red Sauce Pasta</div>
+          <div class="menu-card-desc">Tangy, flavourful red sauce pasta with a homestyle touch. A must try!</div>
+          <div class="menu-card-foot">
+            <div class="menu-card-actions">
+              <button class="icon-btn" aria-label="Add to cart">🛒</button>
+              <button class="icon-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+            <span class="price-pill">From ₹149</span>
+          </div>
+        </div>
+      </article>
+      <article class="menu-card" role="listitem">
+        <div class="menu-card-top">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80" alt="Jain special vegetarian dish" loading="lazy" />
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Jain Special Items</div>
+          <div class="menu-card-desc">Delicious Jain-friendly options — full of flavour, prepared with utmost care.</div>
+          <div class="menu-card-foot">
+            <div class="menu-card-actions">
+              <button class="icon-btn" aria-label="Add to cart">🛒</button>
+              <button class="icon-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+            <span class="price-pill">From ₹129</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ABOUT FEATURE 1 ── -->
+<section class="section" id="about" aria-label="About Aroma Wave">
+  <div class="container">
+    <div class="feature-row">
+      <div>
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">More Than Just a Cafe — An Experience</h2>
+        <p class="section-body">
+          Aroma Wave by Capital is Gandhidham's go-to destination for great food, refreshing drinks, and unforgettable moments. Whether you're here for a quick coffee, a relaxed lunch, or a late-night hangout — we've got something for everyone.
+        </p>
+        <p class="section-body" style="margin-top:12px;">
+          Our menu is crafted with love — from thin-crust pizzas loaded with toppings to creamy pastas, golden garlic bread, rich brownies, and signature mocktails. The warm, stylish interior creates a perfect setting for any occasion.
+        </p>
+        <div style="display:flex; gap:28px; margin-top:28px; flex-wrap:wrap;">
+          <div>
+            <div style="font-family:var(--font-heading); font-size:32px; font-weight:800; color:var(--brown-deep);">4.5★</div>
+            <div style="font-size:12px; color:var(--brown-warm); font-weight:500;">Google Rating</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-heading); font-size:32px; font-weight:800; color:var(--brown-deep);">101+</div>
+            <div style="font-size:12px; color:var(--brown-warm); font-weight:500;">Happy Reviews</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-heading); font-size:32px; font-weight:800; color:var(--brown-deep);">1 AM</div>
+            <div style="font-size:12px; color:var(--brown-warm); font-weight:500;">Open Late</div>
+          </div>
+        </div>
+        <div style="margin-top:28px;">
+          <a href="#reviews" class="btn btn-dark">Read Reviews</a>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="feature-circle" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80" alt="Coffee with beans" />
+          <div class="price-float">Best in Town</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ABOUT FEATURE 2 ── -->
+<section class="section" aria-label="Our Ambiance">
+  <div class="container">
+    <div class="feature-row reverse">
+      <div class="feature-visual">
+        <div class="feature-circle" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Pizza close up" />
+          <div class="price-float">From ₹199</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Warm Ambiance</div>
+        <h2 class="section-title">Stylish Interiors, Calm Vibes</h2>
+        <p class="section-body">
+          "Best service and atmosphere — best interior." Our guests describe Aroma Wave as the perfect place to relax, unwind, and enjoy great food. Warm lighting, comfortable seating, and a cozy atmosphere that makes you want to stay longer.
+        </p>
+        <p class="section-body" style="margin-top:12px;">
+          Perfect for solo visits, dates, family meals, or late-night hangouts with friends. We're open till 1 AM, every day of the week.
+        </p>
+        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-dark">Visit Us</a>
+          <a href="tel:09998899360" class="btn btn-glass">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            099988 99360
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── OFFERS ── -->
+<section class="section" id="offers" aria-label="Special Offers">
+  <div class="container">
+    <div class="section-label">Special Offers</div>
+    <h2 class="section-title">Deals Worth Visiting For</h2>
+    <p class="section-body" style="max-width:440px; margin-bottom:40px;">We always have something exciting — from late-night bites to group combos and delivery deals.</p>
+    <div class="offers-grid">
+      <div class="offer-card offer-card-warm" role="article">
+        <div class="offer-ring" aria-hidden="true"></div>
+        <div class="offer-icon">🌙</div>
+        <div class="offer-title light">Late Night Special</div>
+        <div class="offer-desc light">We're open till 1 AM! Enjoy exclusive late-night combos and extra-special deals after 10 PM.</div>
+        <span class="offer-tag offer-tag-light">Open till 1:00 AM</span>
+      </div>
+      <div class="offer-card offer-card-cool" role="article">
+        <div class="offer-ring" aria-hidden="true" style="background:rgba(92,51,23,0.06);"></div>
+        <div class="offer-icon">👨‍👩‍👧‍👦</div>
+        <div class="offer-title dark">Group Combo Deals</div>
+        <div class="offer-desc dark">Bring your crew! Group orders get exclusive combo prices on pizzas, mocktails & more.</div>
+        <span class="offer-tag offer-tag-dark">For groups of 4+</span>
+      </div>
+      <div class="offer-card offer-card-warm" role="article">
+        <div class="offer-ring" aria-hidden="true"></div>
+        <div class="offer-icon">🛵</div>
+        <div class="offer-title light">No-Contact Delivery</div>
+        <div class="offer-desc light">Enjoy Aroma Wave from home with safe, no-contact delivery and kerbside pickup.</div>
+        <span class="offer-tag offer-tag-light">Delivery Available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── GALLERY ── -->
+<section class="section" id="gallery" aria-label="Photo Gallery">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:44px;">
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">The Aroma Wave Experience</h2>
+      <p class="section-body" style="max-width:420px; margin:12px auto 0;">A feast for the eyes before the feast for your palate.</p>
+    </div>
+    <div class="gallery-grid" role="list" aria-label="Cafe photos">
+      <div class="g-item g-1" role="listitem" data-label="Cafe Ambiance" aria-label="Cafe interior ambiance">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80" alt="Cozy cafe interior ambiance" loading="lazy" />
+      </div>
+      <div class="g-item g-2" role="listitem" data-label="Our Pizza" aria-label="Pizza">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=80" alt="Crispy pizza" loading="lazy" />
+      </div>
+      <div class="g-item g-3" role="listitem" data-label="Pasta" aria-label="Pasta dish">
+        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=500&q=80" alt="Creamy pasta" loading="lazy" />
+      </div>
+      <div class="g-item g-4" role="listitem" data-label="Mocktails" aria-label="Mocktails">
+        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=500&q=80" alt="Colourful mocktails" loading="lazy" />
+      </div>
+      <div class="g-item g-5" role="listitem" data-label="Garlic Bread" aria-label="Garlic bread">
+        <img src="https://images.unsplash.com/photo-1619531040576-f9416740661f?w=500&q=80" alt="Golden garlic bread" loading="lazy" />
+      </div>
+      <div class="g-item g-6" role="listitem" data-label="Cozy Seating" aria-label="Seating area">
+        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700&q=80" alt="Cozy cafe seating" loading="lazy" />
+      </div>
+      <div class="g-item g-7" role="listitem" data-label="Brownie" aria-label="Chocolate brownie">
+        <img src="https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=500&q=80" alt="Fudgy chocolate brownie" loading="lazy" />
+      </div>
+      <div class="g-item g-8" role="listitem" data-label="Great Coffee" aria-label="Coffee">
+        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80" alt="Freshly brewed coffee" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── REVIEWS ── -->
+<section class="section" id="reviews" aria-label="Customer Reviews">
+  <div class="container">
+    <div class="reviews-wrap">
+      <div class="section-label" style="color:rgba(255,255,255,0.5);">What Guests Say</div>
+      <h2 class="section-title light">Loved by Everyone</h2>
+      <div class="rating-row" aria-label="4.5 stars from 101 reviews">
+        <div class="rating-num">4.5</div>
+        <div>
+          <div class="rating-stars">★★★★½</div>
+          <div class="rating-label">Exceptional</div>
+          <div class="rating-count">Based on 101 Google Reviews</div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <article class="review-card">
+          <div class="review-q" aria-hidden="true">"</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">Had an unforgettable dining experience! The ambiance was warm and stylish. We tried their pizza, which was loaded with toppings and had the perfect thin, crispy crust.</p>
+          <div class="reviewer">
+            <div class="rev-av av-a" aria-hidden="true">K</div>
+            <div>
+              <div class="rev-name">Kishan Chonani</div>
+              <div class="rev-meta">Local Guide · 11 months ago</div>
+            </div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-q" aria-hidden="true">"</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">Great Coffee! Delicious Food! Superb Ambience! Everything about Aroma Wave is top notch. A must visit if you're in Gandhidham!</p>
+          <div class="reviewer">
+            <div class="rev-av av-b" aria-hidden="true">A</div>
+            <div>
+              <div class="rev-name">Anuj Sharma</div>
+              <div class="rev-meta">Local Guide · 5 months ago</div>
+            </div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-q" aria-hidden="true">"</div>
+          <div class="review-stars" aria-label="4 stars">★★★★☆</div>
+          <p class="review-text">Good experience, great food, overall good service. Tried white sauce pasta, red sauce pasta and garlic bread — all good. Worth trying 100%!</p>
+          <div class="reviewer">
+            <div class="rev-av av-c" aria-hidden="true">J</div>
+            <div>
+              <div class="rev-name">Jaimeen Thacker</div>
+              <div class="rev-meta">Local Guide · 10 months ago</div>
+            </div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-q" aria-hidden="true">"</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p class="review-text">Tasty food, refreshing drinks, and a relaxing vibe. Nice experience all together — calm vibes, good place to relax. Best interior in Gandhidham!</p>
+          <div class="reviewer">
+            <div class="rev-av av-d" aria-hidden="true">R</div>
+            <div>
+              <div class="rev-name">Regular Guest</div>
+              <div class="rev-meta">Google Review</div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div style="text-align:center; margin-top:36px;">
+        <a href="#" class="btn btn-glass">Read All 101 Reviews on Google ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INSTAGRAM FEED ── -->
+<section class="section" id="instagram" aria-label="Instagram Feed">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:48px;">
+      <div>
+        <div class="section-label">Social</div>
+        <h2 class="section-title">We're on Instagram</h2>
+        <p class="section-body" style="max-width:400px;">Real moments, real vibes — follow along for food drops, events, and the Aroma Wave life.</p>
+      </div>
+      <a href="https://www.instagram.com/aromawavebycapital/" target="_blank" rel="noopener noreferrer" class="btn btn-dark" aria-label="Follow Aroma Wave on Instagram (opens in new tab)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @aromawavebycapital
+      </a>
+    </div>
+
+    <!-- Bento Instagram Grid -->
+    <div class="ig-grid">
+
+      <!-- Large feature post — Afro music (376 likes, most popular) -->
+      <a href="https://www.instagram.com/p/DVIZeJ2DKLr/" target="_blank" rel="noopener noreferrer" class="ig-card ig-large" aria-label="Instagram post: Afro music with DJ Shauma">
+        <img src="ig-images/ig1.jpg" alt="Afro music with DJ Shauma at Aroma Wave" loading="lazy" />
+        <div class="ig-overlay">
+          <div class="ig-type-badge">📸</div>
+          <div class="ig-meta">
+            <div class="ig-caption">Afro music with DJ Shauma at Aroma Wave Café 🎶🔥 — the vibes were absolutely unmatched!</div>
+            <div class="ig-stats">
+              <span>♥ 376</span>
+              <span>💬 1</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 2 — Aroma Ka Swaad (video) -->
+      <a href="https://www.instagram.com/p/DV_H15Lk6H1/" target="_blank" rel="noopener noreferrer" class="ig-card ig-small" aria-label="Instagram post: Aroma Ka Swaad">
+        <img src="ig-images/ig2.jpg" alt="Aroma Ka Swaad reel" loading="lazy" />
+        <div class="ig-overlay">
+          <div class="ig-type-badge">▶</div>
+          <div class="ig-meta">
+            <div class="ig-caption">Aroma Ka Swaad ✨</div>
+            <div class="ig-stats"><span>♥ 12</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 3 — Where you sit (carousel with real images) -->
+      <a href="https://www.instagram.com/p/DVsXZz2gqfT/" target="_blank" rel="noopener noreferrer" class="ig-card ig-small" aria-label="Instagram post: Where you sit changes the vibe">
+        <img src="ig-images/ig3.jpg" alt="Cafe seating vibes" loading="lazy" />
+        <div class="ig-overlay">
+          <div class="ig-type-badge">⊞</div>
+          <div class="ig-meta">
+            <div class="ig-caption">Where you sit change the vibe 🤎</div>
+            <div class="ig-stats"><span>♥ 25</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 4 — Aroma X Shauma (67 likes) -->
+      <a href="https://www.instagram.com/p/DVa4S6NAmVC/" target="_blank" rel="noopener noreferrer" class="ig-card ig-small" aria-label="Instagram post: Aroma X Shauma">
+        <img src="ig-images/ig4.jpg" alt="Aroma X Shauma event" loading="lazy" />
+        <div class="ig-overlay">
+          <div class="ig-type-badge">▶</div>
+          <div class="ig-meta">
+            <div class="ig-caption">Aroma X Shauma 🔥🚀</div>
+            <div class="ig-stats"><span>♥ 67</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 5 — Caffine Rave event (tall) -->
+      <a href="https://www.instagram.com/p/DVLllF7ivJ6/" target="_blank" rel="noopener noreferrer" class="ig-card ig-tall" aria-label="Instagram post: CAFFINE RAVE event">
+        <img src="ig-images/ig5.jpg" alt="Caffine Rave event at Aroma Wave" loading="lazy" />
+        <div class="ig-overlay">
+          <div class="ig-type-badge">▶</div>
+          <div class="ig-meta">
+            <div class="ig-caption">CAFFINE RAVE ☕️ — Bombay culture for the first time in Gandhidham. Where coffee meets underground sound.</div>
+            <div class="ig-stats"><span>💬 0</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 6 — Kids Workshop (120 likes) -->
+      <a href="https://www.instagram.com/p/DVwGsxsD2QK/" target="_blank" rel="noopener noreferrer" class="ig-card ig-small" aria-label="Instagram post: Kids workshop">
+        <img src="ig-images/ig6.jpg" alt="Kids Confidence Workshop" loading="lazy" />
+        <div class="ig-overlay">
+          <div class="ig-type-badge">▶</div>
+          <div class="ig-meta">
+            <div class="ig-caption">Kids Confidence & Dining Etiquette Workshop at Aroma Wave ✨</div>
+            <div class="ig-stats"><span>♥ 120</span><span>💬 4</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 7 — The Therapy -->
+      <a href="https://www.instagram.com/p/DVTOCBegqCq/" target="_blank" rel="noopener noreferrer" class="ig-card ig-small" aria-label="Instagram post: The Therapy">
+        <img src="ig-images/ig7.jpg" alt="The Therapy reel" loading="lazy" />
+        <div class="ig-overlay">
+          <div class="ig-type-badge">▶</div>
+          <div class="ig-meta">
+            <div class="ig-caption">The Therapy &gt;&gt;</div>
+            <div class="ig-stats"><span>♥ 20</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 8 — Chess play -->
+      <a href="https://www.instagram.com/p/DXBUd72iJG2/" target="_blank" rel="noopener noreferrer" class="ig-card ig-small" aria-label="Instagram post: Chess play">
+        <img src="ig-images/ig8.jpg" alt="Chess play at Aroma Wave" loading="lazy" />
+        <div class="ig-overlay">
+          <div class="ig-type-badge">▶</div>
+          <div class="ig-meta">
+            <div class="ig-caption">A Normal Chess play... #storytelling #chess</div>
+            <div class="ig-stats"><span>♥ 19</span><span>💬 1</span></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Follow strip -->
+    <div class="ig-follow-strip">
+      <div class="ig-follow-handle">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span>@aromawavebycapital</span>
+      </div>
+      <p class="ig-follow-sub">Follow us for daily food drops, events & cafe vibes</p>
+      <a href="https://www.instagram.com/aromawavebycapital/" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
+        Follow on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CTA BANNER ── -->
+<section class="section" aria-label="Reserve a table">
+  <div class="container">
+    <div class="cta-banner">
+      <div>
+        <div class="cta-eyebrow">Let's Talk</div>
+        <div class="cta-title">Want to Reserve a Table?</div>
+      </div>
+      <a href="tel:09998899360" class="btn btn-dark" style="font-size:15px; padding:15px 32px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Contact Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CONTACT ── -->
+<section class="section" id="contact" aria-label="Contact and Location">
+  <div class="container">
+    <div class="section-label">Find Us</div>
+    <h2 class="section-title">Visit Aroma Wave</h2>
+    <p class="section-body" style="margin-bottom:40px;">Come say hello! We're open late every day and can't wait to serve you.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-card">
+          <div class="contact-item">
+            <div class="c-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <div class="c-title">Address</div>
+              <div class="c-text">Plot no 12, Rabindranath Tagore Rd,<br>near Carzspa, Ward 3B, Adipur,<br>Gandhidham, Gujarat 370205</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="c-title">Phone</div>
+              <a href="tel:09998899360" class="c-link">099988 99360</a>
+            </div>
+          </div>
+          <div class="contact-item" style="margin-bottom:0;">
+            <div class="c-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div style="width:100%;">
+              <div class="c-title">Opening Hours</div>
+              <table class="hours-table" aria-label="Opening hours" style="margin-top:10px;">
+                <tbody>
+                  <tr><td>Monday</td><td>9:00 AM – 1:00 AM</td></tr>
+                  <tr><td>Tuesday</td><td>9:00 AM – 1:00 AM</td></tr>
+                  <tr><td>Wednesday</td><td>9:00 AM – 1:00 AM</td></tr>
+                  <tr><td>Thursday</td><td>9:00 AM – 1:00 AM</td></tr>
+                  <tr><td>Friday</td><td>9:00 AM – 1:00 AM</td></tr>
+                  <tr><td>Saturday</td><td>9:00 AM – 1:00 AM</td></tr>
+                  <tr><td>Sunday</td><td>9:00 AM – 1:00 AM</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:20px;">
+          <div class="c-title" style="margin-bottom:10px; font-size:14px;">Services Available</div>
+          <div class="service-pills" role="list">
+            <div class="spill" role="listitem">🍽️ Dine-in</div>
+            <div class="spill" role="listitem">🛒 Kerbside Pickup</div>
+            <div class="spill" role="listitem">🛵 No-Contact Delivery</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;">
+          <a href="tel:09998899360" class="btn btn-dark">Call Now</a>
+          <a href="https://wa.me/919998899360" class="btn btn-glass" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      </div>
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d951.5!2d70.0942207!3d23.0678525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3950b900286a4081%3A0x5d1a0444f3fb3d87!2sAroma%20Wave%20by%20capital!5e0!3m2!1sen!2sin!4v1720000000000!5m2!1sen!2sin"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Aroma Wave by Capital on Google Maps"
+          aria-label="Map showing Aroma Wave by Capital, Plot no 12, Rabindranath Tagore Rd, Gandhidham, Gujarat">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Aroma Wave ☕</div>
+        <p class="footer-desc">Wake up to something special. Gandhidham's favourite cafe for great food, refreshing drinks, and a relaxing vibe — open till 1 AM every day.</p>
+        <div class="social-row" aria-label="Social media">
+          <div class="soc-btn" role="link" tabindex="0" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div class="soc-btn" role="link" tabindex="0" aria-label="Facebook">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-h">Our Services</div>
+        <nav class="footer-links" aria-label="Services">
+          <a href="#menu">Coffee Menu</a>
+          <a href="#menu">Food Menu</a>
+          <a href="#offers">Delivery</a>
+          <a href="#offers">Kerbside Pickup</a>
+          <a href="#contact">Reservations</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-h">Our Company</div>
+        <nav class="footer-links" aria-label="Company">
+          <a href="#about">About Us</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#offers">Special Offers</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-h">Address</div>
+        <div style="font-size:13.5px; color:rgba(255,255,255,0.6); line-height:1.7;">
+          Plot no 12, Rabindranath Tagore Rd,<br>
+          near Carzspa, Ward 3B, Adipur,<br>
+          Gandhidham, Gujarat 370205<br><br>
+          <a href="tel:09998899360" style="color:rgba(255,255,255,0.75); text-decoration:none; font-weight:600;">099988 99360</a><br>
+          <span style="color:rgba(255,255,255,0.4); font-size:12px;">Open Daily · 9 AM – 1 AM</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 Aroma Wave by Capital. All rights reserved.</div>
+      <div style="display:flex; align-items:center; gap:6px; color:rgba(255,255,255,0.4);">
+        <span style="color:#d97706;">★</span> 4.5 / 5 · 101 Google Reviews
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /page-wrap -->
+
+<!-- Scroll Top -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+  // Scroll behaviours
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 80);
+  }, { passive: true });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mob-link, .mobile-menu .btn').forEach(el => {
+    el.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Entrance animations
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.menu-card, .offer-card, .review-card, .g-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity 380ms ease, transform 380ms ease, box-shadow 220ms ease';
+      obs.observe(el);
+    });
+  }
+
+  // Icon buttons: wishlist toggle
+  document.querySelectorAll('.icon-btn[aria-label="Add to wishlist"]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const loved = this.textContent === '♡';
+      this.textContent = loved ? '♥' : '♡';
+      this.style.color = loved ? '#e11d48' : '';
+    });
+  });
+</script>
+</body>
+</html>
